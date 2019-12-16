@@ -87,7 +87,7 @@ module DiscourseMlmDailySummary
                 .where(id: enabled_ids)
                 .where(staged: false)
                 .where("#{!SiteSetting.must_approve_users?} OR approved OR moderator OR admin")
-                .where("date_part('hour', first_seen_at) = date_part('hour', CURRENT_TIMESTAMP)")           # where the hour of first_seen_at is the same as the current hour
+                .where("date_part('hour', COALESCE(first_seen_at, '2010-01-01')) = date_part('hour', CURRENT_TIMESTAMP)")           # where the hour of first_seen_at is the same as the current hour
                 .pluck(:id)
           end
 
