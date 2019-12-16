@@ -19,7 +19,7 @@ module DiscourseMlmDailySummary
         def mailing_list(user, opts={})
           prepend_view_path "plugins/discourse-mlm-daily-summary/app/views"
 
-          @since = opts[:since] || 1.day.ago
+          @since = opts[:since] || 7.days.ago
           @since_formatted = short_date(@since)
 
           topics = Topic
